@@ -1,0 +1,442 @@
+CONTEXT & REFERENCE
+You have been provided with a single HTML file: resourcesnow-v2.html
+This file is the homepage reference for the complete Next.js V2 website of Resources Now — an AI-powered digital engineering company based in Adajan, Surat, Gujarat, India.
+Use this HTML file as the single source of truth for:
+
+Color system (exact CSS variables defined in the file)
+Typography (Syne for display/headings, DM Sans for body)
+Component design language (cards, buttons, borders, spacing, hover states)
+Section layouts and grid systems
+All homepage content (copy, metrics, project data, team names, contact details)
+Animation style (fade-up reveals, counter animations, ticker)
+
+Do NOT deviate from the design language established in this file under any circumstances.
+
+COMPANY INFORMATION
+Company: Resources Now
+Domain: resourcesnow.in
+Location: Adajan, Surat, Gujarat, India
+Phone: +91 70411 39115
+Email: mail@resourcesnow.in
+Positioning: AI-powered digital engineering and business systems company
+Founded: ~2020 (5 years experience)
+
+TECH STACK FOR THIS PROJECT
+
+Next.js 15 (App Router)
+TypeScript
+TailwindCSS
+Framer Motion (for animations — replaces CSS keyframes in the HTML reference)
+Shadcn/UI (for form elements and utility components only)
+Lucide React (for icons — replace emoji icons in the HTML with appropriate Lucide icons)
+next/font for Syne and DM Sans (replace Google Fonts CDN link)
+
+
+FOLDER STRUCTURE
+src/
+├── app/
+│   ├── layout.jsx               # Root layout with nav + footer
+│   ├── page.jsx                 # Homepage (from HTML reference)
+│   ├── about/page.jsx
+│   ├── services/page.jsx
+│   ├── ai-solutions/page.jsx
+│   ├── case-studies/page.jsx
+│   ├── case-studies/[slug]/page.jsx
+│   ├── process/page.jsx
+│   ├── stack/page.jsx
+│   ├── contact/page.jsx
+│   ├── careers/page.jsx
+│   └── blog/page.jsx
+├── components/
+│   ├── layout/
+│   │   ├── Navbar.jsx
+│   │   └── Footer.jsx
+│   ├── sections/
+│   │   ├── Hero.jsx
+│   │   ├── Ticker.jsx
+│   │   ├── Metrics.jsx
+│   │   ├── ServicesGrid.jsx
+│   │   ├── ProjectsGrid.jsx
+│   │   ├── AboutSection.jsx
+│   │   ├── AISection.jsx
+│   │   ├── ProcessTrack.jsx
+│   │   ├── TechStack.jsx
+│   │   ├── TeamSection.jsx
+│   │   ├── CTABanner.jsx
+│   │   └── ContactSection.jsx
+│   └── ui/
+│       ├── SectionLabel.jsx
+│       ├── RevealWrapper.jsx
+│       ├── AnimatedCounter.jsx
+│       ├── ProjectCard.jsx
+│       ├── ServiceCard.jsx
+│       └── HeroDashboard.jsx
+├── data/
+│   ├── projects.js
+│   ├── services.js
+│   ├── team.js
+│   ├── stack.js
+│   └── metrics.js
+├── lib/
+│   └── utils.js
+└── styles/
+    └── globals.css              # CSS variables from HTML reference
+
+COLOR SYSTEM
+Extract these exact values from the HTML reference file and define them in globals.css AND tailwind.config.ts:
+css--blue-primary:   #3B6CF4
+--blue-deep:      #1A3A9B
+--blue-light:     #EEF2FF
+--blue-mid:       #6B8FFF
+--blue-dim:       rgba(59,108,244,0.08)
+--blue-glow:      rgba(59,108,244,0.18)
+--navy:           #0F1C3F
+--bg:             #FFFFFF
+--bg-soft:        #F8F9FF
+--bg-section:     #F3F5FF
+--border:         #E2E6F3
+--border-blue:    rgba(59,108,244,0.18)
+--text-primary:   #0F1C3F
+--text-secondary: #4A5568
+--text-muted:     #8896AD
+--success:        #22C55E
+
+DATA FILES
+Populate src/data/ with the following exact data. Do not invent or add any content beyond what is listed here.
+projects.js
+tsexport const projects = [
+  {
+    slug: "iste-gujarat-awards",
+    name: "ISTE Gujarat Awards Management Portal",
+    emoji: "🏆",
+    tags: ["Institutional Platform", "Full-Stack", "Role-Based Auth"],
+    tagType: ["blue", "default", "default"],
+    description: "Full-stack award nomination and institutional workflow management platform. Role-based access for institutions, evaluators, and administrators with complete award pipeline management and multi-stage approval workflows.",
+    highlights: ["Role-based access control", "Institutional workflows", "Award pipelines", "Scalable organization systems"],
+    stack: ["Next.js", "React", "PostgreSQL", "Supabase"],
+    status: "In Scrutiny — Institutional Deployment",
+    live: false,
+    featured: true,
+    category: "Institutional Platform"
+  },
+  {
+    slug: "erp-system",
+    name: "Enterprise Resource Planning System",
+    emoji: "⚡",
+    tags: ["Enterprise ERP", "REST API"],
+    tagType: ["blue", "default"],
+    description: "Backend-heavy enterprise management system with subscription handling, employee workflows, and scalable REST architecture.",
+    highlights: ["Subscription management", "Employee systems", "Enterprise workflows", "Scalable REST architecture"],
+    stack: ["TypeScript", "Node.js", "Express", "MongoDB"],
+    status: null,
+    live: false,
+    featured: false,
+    category: "Enterprise ERP"
+  },
+  {
+    slug: "thrill-bazaar",
+    name: "Thrill Bazaar",
+    emoji: "🎯",
+    tags: ["Marketplace", "AWS", "CI/CD"],
+    tagType: ["blue", "default", "default"],
+    description: "Adventure marketplace platform with AWS deployment, automated CI/CD pipelines, and scalable operational architecture.",
+    highlights: ["AWS deployment", "CI/CD pipelines", "Marketplace systems", "Scalable operational architecture"],
+    stack: ["Next.js", "PostgreSQL", "AWS"],
+    status: "Live",
+    url: "https://thrillbazaar.com",
+    live: true,
+    featured: false,
+    category: "Marketplace"
+  },
+  {
+    slug: "mindbend-docs",
+    name: "Mindbend Documentation Application",
+    emoji: "📋",
+    tags: ["Automation", "Mobile"],
+    tagType: ["blue", "default"],
+    description: "Internal workflow and documentation automation platform with PDF generation, digital signatures, and communication automation.",
+    highlights: ["PDF generation", "Digital signatures", "Communication workflows", "Role-based systems"],
+    stack: ["Flutter", "MongoDB", "REST APIs"],
+    status: "Live — Production Deployment",
+    live: true,
+    featured: false,
+    category: "Automation"
+  },
+  {
+    slug: "rennoki",
+    name: "Rennoki — Cafe Management Platform",
+    emoji: "☕",
+    tags: ["Operational Platform", "Real-time"],
+    tagType: ["blue", "default"],
+    description: "Cafe operational ordering platform with real-time order management, admin dashboard infrastructure, and workflow automation.",
+    highlights: ["Real-time ordering", "Admin systems", "Operational workflows", "Dashboard infrastructure"],
+    stack: ["Next.js", "MongoDB", "TailwindCSS"],
+    status: "Live",
+    url: "https://rennoki.com",
+    live: true,
+    featured: false,
+    category: "Operational Platform"
+  },
+  {
+    slug: "sampark",
+    name: "SAMPARK — Student Council Platform",
+    emoji: "🎓",
+    tags: ["Institutional", "Multi-Role"],
+    tagType: ["blue", "default"],
+    description: "Institutional workflow and approvals platform with multi-role dashboards, approval pipelines, and Redis-powered coordination systems.",
+    highlights: ["Approval pipelines", "Dashboard systems", "Multi-role workflows", "Coordination systems"],
+    stack: ["React", "Next.js", "Node.js", "Redis", "MongoDB"],
+    status: null,
+    live: false,
+    featured: false,
+    category: "Institutional"
+  },
+  {
+    slug: "mindbend-fest",
+    name: "MindBend Techno-Managerial Fest Platform",
+    emoji: "🎪",
+    tags: ["Event Platform", "Integrations"],
+    tagType: ["blue", "default"],
+    description: "Large-scale event operations platform with registrations, team systems, WhatsApp integrations, and admin workflows.",
+    highlights: ["Event registrations", "Team systems", "WhatsApp integrations", "Admin workflows"],
+    stack: ["React", "Next.js", "MongoDB"],
+    status: "Live",
+    url: "https://mindbend-svnit.org",
+    live: true,
+    featured: false,
+    category: "Event Platform"
+  },
+  {
+    slug: "bindis-cupcakery",
+    name: "Bindi's Cupcakery",
+    emoji: "🧁",
+    tags: ["E-commerce", "Integrations"],
+    tagType: ["blue", "default"],
+    description: "Custom e-commerce and ordering platform with UPI integration, WhatsApp workflows, customizable products, and admin systems.",
+    highlights: ["UPI integration", "WhatsApp workflows", "Customizable products", "Admin systems"],
+    stack: ["Next.js", "MongoDB", "Twilio"],
+    status: "Live",
+    url: "https://bindi.vercel.app",
+    live: true,
+    featured: false,
+    category: "E-commerce"
+  }
+]
+team.js
+tsexport const team = [
+  { initials: "AP", name: "Aditya Panchal", role: "Co-founder, CEO" },
+  { initials: "RP", name: "Rahul Panchal", role: "Founder, Design Architect" },
+  { initials: "TV", name: "Trusha Vashi", role: "Co-founder, Lead Dev" },
+  { initials: "BB", name: "Bhenish Babu", role: "UX/UI Designer" },
+  { initials: "KP", name: "Kashyap Patel", role: "Associate Architect" }
+]
+metrics.js
+tsexport const metrics = [
+  { value: 30, suffix: "+", label: "Active Clients" },
+  { value: 140, suffix: "+", label: "Production Deployments" },
+  { value: 25, suffix: "+", label: "APIs Integrated" },
+  { value: 8, suffix: "+", label: "AI Systems Shipped" },
+  { value: 90, suffix: "%", label: "Client Retention" },
+  { value: 5, suffix: "yr", label: "Engineering Experience" }
+]
+services.js
+tsexport const services = [
+  { num: "01", icon: "Globe", name: "Web Platforms", desc: "Scalable full-stack web applications built for real traffic, real data, and real business operations." },
+  { num: "02", icon: "Settings2", name: "SaaS Engineering", desc: "Multi-tenant SaaS architectures with subscription systems, billing, and role-based access control." },
+  { num: "03", icon: "Bot", name: "AI Integrations", desc: "LLM-powered features, RAG pipelines, document intelligence, and AI workflows inside your products." },
+  { num: "04", icon: "RefreshCcw", name: "Workflow Automation", desc: "End-to-end business process automation — eliminating manual work through intelligent systems." },
+  { num: "05", icon: "LayoutDashboard", name: "Enterprise Dashboards", desc: "Real-time operational dashboards, analytics systems, and data visualization platforms." },
+  { num: "06", icon: "Wrench", name: "Internal Tools", desc: "Custom operational tools, admin panels, and back-office systems tailored to your exact workflows." },
+  { num: "07", icon: "Smartphone", name: "Mobile Systems", desc: "Cross-platform mobile applications with offline support, push systems, and API ecosystems." },
+  { num: "08", icon: "ShoppingCart", name: "Marketplace Systems", desc: "Multi-vendor platforms, ordering systems, payment integrations, and fulfilment pipelines." },
+  { num: "09", icon: "Brain", name: "AI Agents", desc: "Autonomous AI agents for research, operations, data processing, and decision automation." },
+  { num: "10", icon: "Plug", name: "API Ecosystems", desc: "RESTful and GraphQL API design, third-party integrations, webhooks, and microservice systems." },
+  { num: "11", icon: "TrendingUp", name: "Data Infrastructure", desc: "Analytics pipelines, data models, reporting infrastructure, and business intelligence systems." },
+  { num: "12", icon: "Rocket", name: "Operational Software", desc: "Enterprise portals, ERP modules, institutional management, and operational platforms." }
+]
+stack.js
+tsexport const stackCategories = [
+  { title: "Frontend", items: ["Next.js", "React", "TypeScript", "TailwindCSS", "Flutter", "React Native", "Framer Motion"] },
+  { title: "Backend & APIs", items: ["Node.js", "Express", "REST APIs", "GraphQL", "JWT Auth", "WebSockets", "Webhooks"] },
+  { title: "Data & Storage", items: ["PostgreSQL", "MongoDB", "Redis", "Supabase", "Vector DBs", "AWS S3"] },
+  { title: "Infrastructure & DevOps", items: ["AWS", "Vercel", "Nginx", "PM2", "Docker", "GitHub Actions", "CI/CD"] },
+  { title: "AI & Integrations", items: ["OpenAI", "LangChain", "RAG Pipelines", "LLM Workflows", "Twilio", "WhatsApp API", "Razorpay"] },
+  { title: "Design & Tooling", items: ["Figma", "Notion", "Git & GitHub", "Postman", "Linear", "Shadcn/UI"] }
+]
+
+PAGES — CONTENT REQUIREMENTS
+/ — Homepage
+Rebuild exactly from the HTML reference file, section by section. Every section is already in the file. Convert to React components. No content additions.
+/about
+Use all content already present in the About section of the homepage. Expand into a full page with:
+
+Same hero block (section-label, heading, sub from homepage about section)
+Company story: "Resources Now is a Surat-based AI-powered digital engineering company founded to build scalable software systems for modern businesses. We think in systems, build for scale, and execute with precision."
+Values section (3 values from homepage: Systems Thinking, Execution Velocity, Business Impact Focus — same copy)
+Full team grid (all 5 team members from team.ts)
+A "We're Hiring" card at the end of team grid linking to /careers
+Metrics row (same 6 metrics from homepage)
+
+/services
+
+Page hero with section-label "Engineering Capabilities", heading "What We Engineer", sub from homepage
+Full 12-service grid (from services.js) — same card design as homepage but larger cards with more spacing
+For each service add a second paragraph: a 2-sentence "How we approach it" expansion. Write these in the same technical tone as the service descriptions. Do not add fictional case study references.
+CTA banner at bottom (same as homepage CTA banner component)
+
+/ai-solutions
+
+Dark navy background page matching the AI section from homepage
+Page hero: section-label "AI Solutions", heading "Intelligence Built Into Your Systems", sub from homepage AI section
+6 AI capability cards expanded (same 6 from homepage: AI Copilots, RAG Systems, AI Agents, Document Intelligence, Workflow Intelligence, AI Dashboards) — each with a third sentence of detail
+A "How we integrate AI" section with the 3-step process: (1) Audit your existing system, (2) Design the AI architecture, (3) Engineer and deploy
+Tech used: OpenAI, LangChain, RAG Pipelines, LLM Workflows, Vector DBs — displayed as stack pills
+CTA banner at bottom
+
+/case-studies
+
+Page hero: section-label "Engineering Case Studies", heading "Systems We've Built", sub from homepage
+Full grid of all 8 projects from projects.js (not just 6 like the homepage)
+Same ProjectCard component as homepage
+Filter bar at top: All / Web Platform / SaaS / Mobile / Marketplace / Institutional / E-commerce / Automation
+Filter is client-side using React state — no routing changes
+
+/case-studies/[slug]
+
+Dynamic route for each of the 8 projects
+Page sections:
+
+Breadcrumb: Case Studies > [Project Name]
+Hero: project name, tags, stack pills, status badge
+Overview: project description (from projects.js)
+Highlights: bullet list (from highlights array in projects.ts)
+Tech Stack: stack pills
+Live link button if url exists in data
+
+
+No fictional architecture diagrams, no invented content. Only what exists in projects.ts.
+
+/process
+
+Page hero: section-label "How We Work", heading "Our Engineering Workflow"
+Full 8-step process — same steps from homepage ProcessTrack, expanded:
+
+Each step gets a card with the step number, name, short desc (from homepage), and a 2-sentence expansion
+Steps: Discovery, Architecture, Planning, Engineering, QA & Testing, Deployment, Monitoring, Scaling
+Same design language as homepage process cards but full-width layout, one row of 4 + one row of 4
+
+
+Below process: a section "What you get at each stage" — a simple table with Step | Deliverable columns. Use only logical deliverables matching the step names. No invented content.
+CTA banner at bottom
+
+/stack
+
+Page hero: section-label "Technology", heading "Our Engineering Stack"
+Full stack grid from stack.js — same 6-category layout as homepage but expanded
+Below stack: a "Why these choices" section — 3 cards: Performance, Scalability, Developer Experience. One sentence each explaining the philosophy. Keep it factual and brief.
+CTA banner at bottom
+
+/contact
+
+Full-page contact with the same form and contact details from the homepage contact section
+Contact details: location, phone, email, response time (all from HTML reference)
+Form fields: Full Name, Company/Business, Email, Project Type (dropdown — same options as HTML reference), Message
+Below the form: a note "We respond within 24 hours. No spam, no sales calls unless you want them."
+No map embed. No third-party widgets.
+
+/careers
+
+Page hero: section-label "Careers", heading "Join the Engineering Team"
+Sub: "We're building a team of dedicated engineers, sales people, and operators who take ownership and deliver."
+Two open role sections:
+
+Outreach / Business Development
+Role description: "Research Surat-based and international businesses, identify digital product opportunities, and convert leads through direct outreach and pitching."
+Requirements: Strong communication skills, research ability, confident in real-world conversations, self-motivated, results-oriented.
+What we offer: Base salary + commission per converted client + performance bonuses.
+Tech Engineer (Junior / Mid)
+Role description: "Work on real production projects — web platforms, mobile apps, dashboards, and AI integrations. Own your tasks end-to-end from briefing to deployment."
+Requirements: Proficiency in at least one of Next.js / React / Node.js / Flutter. GitHub portfolio required. Ability to handle blockers independently, strong ownership mentality.
+What we offer: Base salary + project delivery bonuses.
+
+Application process (4 steps): Apply → Assignment → Interview / Roleplay → 2-week Paid Trial
+CTA: "Send your application to mail@resourcesnow.in with the subject line: [Role] — Your Name"
+
+/blog
+
+Page hero: section-label "Insights", heading "Engineering Blog"
+Sub: "Thoughts on systems, AI, and building digital products."
+Display a "Coming Soon" state — a centered card with the message: "We're writing. Check back soon." with a link to contact. No placeholder posts.
+
+
+SHARED COMPONENTS
+Navbar.jsx
+
+Sticky, backdrop blur, white background at 92% opacity
+Logo: blue gradient square logomark "RN" + "Resources Now" in Syne 800
+Nav links: Services, Systems (→ /case-studies), AI Solutions, Process, Stack, About
+CTA button: "Start a Project →" linking to /contact
+Mobile: hamburger menu, full-screen overlay, same links
+Active link: blue color + blue-dim background
+
+Footer.jsx
+
+Dark navy background (#0F1C3F)
+4-column grid: Brand description + 3 link columns (Services, Company, Contact)
+Brand column: RN logomark, "Resources Now", description text, location
+Services links: Web Platforms, SaaS Engineering, AI Integrations, Workflow Automation, Mobile Systems
+Company links: About Us, Case Studies, Our Process, Tech Stack, Careers
+Contact links: mail@resourcesnow.in, +91 70411 39115, Start a Project, resourcesnow.in
+Bottom bar: copyright left, Privacy Policy / Terms / Support links right
+
+CTABanner.jsx
+
+Reusable component, used at the bottom of every inner page
+Blue gradient background (linear-gradient 135deg from --blue-primary to --blue-deep)
+White dot pattern overlay
+Heading: "Ready to Build Something Serious?"
+Sub: "Tell us what you're engineering. We'll make it production-ready."
+Two buttons: "Start Engineering With Us →" (white bg, navy text) + "mail@resourcesnow.in" (ghost white)
+
+RevealWrapper.jsx
+
+Framer Motion wrapper component
+Props: delay?: number, children
+Animates from opacity: 0, y: 24 to opacity: 1, y: 0 on viewport entry
+Use whileInView with once: true and viewport: { amount: 0.08 }
+
+AnimatedCounter.jsx
+
+Client component
+Uses Framer Motion useInView + useMotionValue + useTransform
+Counts from 0 to target over 1800ms with ease-out cubic
+
+SectionLabel.jsx
+
+Renders the blue uppercase label with left bar
+Props: children
+
+
+ANIMATION RULES
+These apply across all pages. Match exactly what is in the HTML reference:
+
+All sections use RevealWrapper with stagger delays (0, 0.1, 0.2, 0.3s)
+Cards on hover: translateY(-3px) to translateY(-5px) depending on card size, with border-color transition to --blue-primary
+Buttons on hover: translateY(-2px) + box-shadow increase
+Ticker: infinite horizontal scroll, 28s duration, linear easing
+Counter: triggered once on viewport entry
+No parallax. No heavy scroll effects. No page transitions.
+
+
+IMPORTANT RULES FOR THE AI AGENT
+
+Use the HTML file as the absolute design reference. Every color, spacing, border-radius, font size, and layout decision comes from that file.
+Do not add content that is not in this prompt or in the HTML file. No testimonials, no pricing tables, no FAQs, no blog posts, no social media feeds.
+Do not use placeholder text anywhere. Every string in every component must be real content from the data files or this prompt.
+Do not change the positioning language. The company is "AI-powered digital engineering" — not a "digital agency", not a "startup", not a "freelance team".
+All data lives in src/data/. No hardcoded strings inside components except for shared UI text (nav labels, footer copyright, CTA button text).
+Lucide React icons only. No emoji in final components (emoji were used in the HTML reference for visual clarity only).
+Framer Motion for all animations. No raw CSS keyframes except for the ticker animation in globals.css.
+Mobile-first responsive. Match the breakpoints from the HTML reference: single column below 768px, adjusted grids at 1100px.
+No external dependencies beyond the listed stack. No GSAP, no anime.js, no third-party UI libraries except Shadcn for form inputs.
+Contact form: wire to a Next.js API route /api/contact that sends form data via Resend or Nodemailer. Do not leave the form as a static HTML element.
