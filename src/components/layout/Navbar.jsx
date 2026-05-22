@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const links = [
   ["Services", "/services"],
@@ -17,6 +17,11 @@ const links = [
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.classList.toggle("mobile-nav-open", open);
+    return () => document.body.classList.remove("mobile-nav-open");
+  }, [open]);
 
   return (
     <nav>
@@ -37,14 +42,16 @@ export default function Navbar() {
           <Menu size={22} />
         </button>
       </div>
-      <div className={`mobile-menu ${open ? "open" : ""}`}>
-        <button className="mobile-close" aria-label="Close navigation" onClick={() => setOpen(false)}>
-          <X size={24} />
-        </button>
-        <Link href="/" className="nav-logo" onClick={() => setOpen(false)}>
-          <span className="nav-logo-mark">RN</span>
-          <span>Resources Now</span>
-        </Link>
+      <div className={`mobile-menu ${open ? "open" : ""}`} aria-hidden={!open}>
+        <div className="mobile-menu-top">
+          <Link href="/" className="nav-logo" onClick={() => setOpen(false)}>
+            <span className="nav-logo-mark">RN</span>
+            <span>Resources Now</span>
+          </Link>
+          <button className="mobile-close" aria-label="Close navigation" onClick={() => setOpen(false)}>
+            <X size={24} />
+          </button>
+        </div>
         <div className="mobile-menu-links">
           {links.map(([label, href]) => (
             <Link key={href} href={href} onClick={() => setOpen(false)} className={pathname === href ? "active" : ""}>

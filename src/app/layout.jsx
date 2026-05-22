@@ -21,6 +21,11 @@ export const metadata = {
     "Resources Now is an AI-powered digital engineering and business systems company based in Adajan, Surat, Gujarat, India.",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${syne.variable} ${dmSans.variable}`}>
