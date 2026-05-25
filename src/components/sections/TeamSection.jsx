@@ -11,7 +11,7 @@ export default function TeamSection({ showHeader = true }) {
           <RevealWrapper className="team-header">
             <SectionLabel>The Team</SectionLabel>
             <h2 className="section-heading">People Behind the <em>Systems</em></h2>
-            <p className="section-sub centered">Engineering minds building production systems that real businesses depend on.</p>
+            <p className="section-sub centered">A focused product, design, and engineering team building production systems that real businesses depend on.</p>
           </RevealWrapper>
         ) : null}
         <RevealWrapper delay={0.1} className="team-grid">

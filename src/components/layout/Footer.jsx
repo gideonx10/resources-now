@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -7,7 +8,9 @@ export default function Footer() {
         <div className="footer-grid">
           <div>
             <div className="footer-brand-name">
-              <div className="footer-logo-mark">RN</div>
+              <div className="footer-logo-mark image-mark">
+                <Image src="/logo.png" alt="Resources Now" width={30} height={30} />
+              </div>
               Resources Now
             </div>
             <div className="footer-desc">AI-powered digital engineering company based in Surat. We build scalable software systems, intelligent workflows, and enterprise infrastructure for modern businesses.</div>
@@ -16,11 +19,11 @@ export default function Footer() {
           <div>
             <div className="footer-col-title">Services</div>
             <div className="footer-links">
-              <Link href="/services">Web Platforms</Link>
-              <Link href="/services">SaaS Engineering</Link>
-              <Link href="/ai-solutions">AI Integrations</Link>
-              <Link href="/services">Workflow Automation</Link>
-              <Link href="/services">Mobile Systems</Link>
+              <Link href="/services/web-platforms">Web Platforms</Link>
+              <Link href="/services/saas-engineering">SaaS Engineering</Link>
+              <Link href="/services/ai-integrations">AI Integrations</Link>
+              <Link href="/services/workflow-automation">Workflow Automation</Link>
+              <Link href="/services/mobile-systems">Mobile Systems</Link>
             </div>
           </div>
           <div>

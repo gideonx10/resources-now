@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -27,7 +28,9 @@ export default function Navbar() {
     <nav>
       <div className="nav-inner">
         <Link href="/" className="nav-logo" onClick={() => setOpen(false)}>
-          <span className="nav-logo-mark">RN</span>
+          <span className="nav-logo-mark image-mark">
+            <Image src="/logo.png" alt="Resources Now" width={36} height={36} priority />
+          </span>
           <span>Resources Now</span>
         </Link>
         <div className="nav-links">
@@ -45,7 +48,9 @@ export default function Navbar() {
       <div className={`mobile-menu ${open ? "open" : ""}`} aria-hidden={!open}>
         <div className="mobile-menu-top">
           <Link href="/" className="nav-logo" onClick={() => setOpen(false)}>
-            <span className="nav-logo-mark">RN</span>
+            <span className="nav-logo-mark image-mark">
+              <Image src="/logo.png" alt="Resources Now" width={36} height={36} />
+            </span>
             <span>Resources Now</span>
           </Link>
           <button className="mobile-close" aria-label="Close navigation" onClick={() => setOpen(false)}>
