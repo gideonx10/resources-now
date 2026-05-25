@@ -14,7 +14,10 @@ export default function Hero() {
             <RevealWrapper>
               <div className="hero-eyebrow">AI-Powered Engineering Systems</div>
               <h1 className="hero-heading">
-                We Engineer <em>Scalable</em><br />Software Systems &amp;<br />Digital Infrastructure
+                <span>We Engineer</span>
+                <span><em>Scalable</em> Software</span>
+                <span>Systems &amp; Digital</span>
+                <span className="hero-heading-final">Infrastructure</span>
               </h1>
               <p className="hero-sub">Enterprise platforms, AI integrations, workflow automation, and full-stack engineering systems &mdash; built for modern businesses that demand reliability and scale.</p>
               <div className="hero-actions">

@@ -21,7 +21,7 @@ export const projectTypes = [
 export const processSteps = [
   { num: "01", name: "Discovery", desc: "Business requirements, technical constraints, scope and goal definition.", deliverable: "Requirements, constraints, scope, and goals" },
   { num: "02", name: "Architecture", desc: "System design, tech stack selection, API contracts, data modelling.", deliverable: "System design, stack plan, API contracts, and data model" },
-  { num: "03", name: "Planning", desc: "Sprint structure, milestone planning, resource allocation.", deliverable: "Sprint structure, milestones, and resource allocation" },
+  { num: "03", name: "Customized Planning", desc: "Sprint structure, milestone planning, resource allocation.", deliverable: "Sprint structure, milestones, and resource allocation" },
   { num: "04", name: "Engineering", desc: "Full-stack development with weekly client reviews and demos.", deliverable: "Production-ready features with weekly demos" },
   { num: "05", name: "QA & Testing", desc: "End-to-end testing, performance audits, security reviews.", deliverable: "Tested flows, performance notes, and security review" },
   { num: "06", name: "Deployment", desc: "CI/CD pipelines, zero-downtime production launch.", deliverable: "CI/CD pipeline and production launch" },
