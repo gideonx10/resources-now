@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 export async function POST(request) {
   const body = await request.json();
-  const { name, company, email, projectType, message } = body;
+  const { name, company, email, phone, projectType, message } = body;
 
-  if (!name || !email || !projectType || !message) {
+  if (!name || !email || !phone || !projectType || !message) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
@@ -13,27 +14,30 @@ export async function POST(request) {
     `Name: ${name}`,
     `Company: ${company || "Not provided"}`,
     `Email: ${email}`,
+    `Phone: ${phone}`,
     `Project Type: ${projectType}`,
     `Message: ${message}`,
   ].join("\n");
 
-  if (process.env.RESEND_API_KEY) {
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-        "Content-Type": "application/json",
+  if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_APP_PASSWORD,
       },
-      body: JSON.stringify({
-        from: process.env.CONTACT_FROM_EMAIL || "Resources Now <onboarding@resend.dev>",
-        to: process.env.CONTACT_TO_EMAIL || "mail@resourcesnow.in",
-        reply_to: email,
-        subject: `Resources Now project brief: ${projectType}`,
-        text,
-      }),
     });
 
-    if (!response.ok) {
+    try {
+      await transporter.sendMail({
+        from: `Resources Now Website <${process.env.GMAIL_USER}>`,
+        to: process.env.CONTACT_TO_EMAIL || process.env.GMAIL_USER,
+        replyTo: email,
+        subject: `Resources Now project brief: ${projectType}`,
+        text,
+      });
+    } catch (error) {
+      console.error("Failed to send contact email", error);
       return NextResponse.json({ error: "Unable to send email" }, { status: 502 });
     }
   } else {

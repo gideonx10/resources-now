@@ -20,7 +20,7 @@ const config: Config = {
         success: "#22C55E",
       },
       fontFamily: {
-        display: ["var(--font-syne)", "sans-serif"],
+        display: ["var(--font-lato)", "sans-serif"],
         sans: ["var(--font-dm-sans)", "sans-serif"],
       },
     },

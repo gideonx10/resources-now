@@ -1,13 +1,13 @@
-import { Syne, DM_Sans } from "next/font/google";
+import { Lato, DM_Sans } from "next/font/google";
 import Navbar from "@/src/components/layout/Navbar";
 import Footer from "@/src/components/layout/Footer";
 import PWARegister from "@/src/components/ui/PWARegister";
 import "./globals.css";
 
-const syne = Syne({
+const lato = Lato({
   subsets: ["latin"],
-  variable: "--font-syne",
-  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-lato",
+  weight: ["700", "900"],
 });
 
 const dmSans = DM_Sans({
@@ -108,7 +108,7 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="en" className={`${syne.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${lato.variable} ${dmSans.variable}`}>
       <body>
         <script
           type="application/ld+json"
